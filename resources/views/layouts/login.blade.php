@@ -25,7 +25,7 @@
         <h1><a><img src="images/atlas.png"></a></h1>
             <div id="">
                 <div id="">
-                    <!-- <p>{{Auth::user()->username}}さん<img src="images/icon1.png"></p> -->
+                    <p>さん<img src="images/icon1.png"></p>
                 </div>
                 <button type="button" class="menu-btn">
                     <span class="inn"></span>
@@ -46,15 +46,15 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>{{Auth::user()->username}}さんの</p>
+                <p>さんの</p>
                 <div>
                 <p>フォロー数</p>
-                <p>{{Auth::user()->following()->count}}名</p>
+                <p>名</p>
                 </div>
                 <p class="btn"><a href="/follow-list">フォローリスト</a></p>
                 <div>
                 <p>フォロワー数</p>
-                <p>{{Auth::user()->followed()->count}}名</p>
+                <p>名</p>
                 </div>
                 <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>
