@@ -29,19 +29,27 @@ class User extends Authenticatable
 
     public function follows(){
     //belongsToManyはリレーションの多対多を使用
-        return $this->belongsToMany (User::class, 'follows','following id', 'followed id');
+    // 第一引数は同一テーブルで自身のテーブルの為(self::class)
+    // 第二引数は中間テーブル
+    // 第三引数は自分の(following_id)外部キー
+    // 第四引数は相手の(followed _id)外部キー
+        return $this->belongsToMany(self::class, 'follows','following_id','followed_id');
     }
     //リレーションの相方
+    // 第一引数は同一テーブルで自身のテーブルの為(self::class)
+    // 第二引数は中間テーブル
+    // 第三引数は相手の(followed _id)外部キー
+    // 第四引数は自分の(following_id)外部キー
     public function followers(){
-        return $this->belongsToMany (User::class, 'followers', 'following_id', 'followed_id');
+        return $this->belongsToMany(self::class, 'follows', 'followed_id','following_id');
     }
 
-    // フォローしているか判断
-    public function isFollowing($user_id){
-        return (boolean) $this->follows()->where('followed id',$user_id)->first();
-    }
-    //フォローされているか判断
-    public function isFollowed ($user_id){
-        return (boolean) $this->followers()->where('following_id', $user_id)->first(['follows.id']);
-    }
+    // // フォローしているか判断
+    // public function isFollowing($user_id){
+    //     return (boolean) $this->follows()->where('followeing_id',$user_id)->first();
+    // }
+    // //フォローされているか判断
+    // public function isFollowed ($user_id){
+    //     return (boolean) $this->followers()->where('followed_id', $user_id)->first(['follows.id']);
+    // }
 }

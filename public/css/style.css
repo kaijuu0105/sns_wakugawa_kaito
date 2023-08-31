@@ -10,7 +10,7 @@ header {
 }
 
 /* hedder style */
-.menu-btn {
+/* .menu-btn {
     width: 60px;
     height: 60px;
     position: absolute;
@@ -79,7 +79,7 @@ header {
 .menu.is-open {
     opacity: 1;
     transform: translateY(0);
-}
+} */
 
 /* main content */
 #row {

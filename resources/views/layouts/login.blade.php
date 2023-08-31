@@ -25,7 +25,7 @@
         <h1><a><img src="images/atlas.png"></a></h1>
             <div id="">
                 <div id="">
-                    <p>さん<img src="images/icon1.png"></p>
+                    <p>{{Auth::user()->username}}さん<img src="images/icon1.png"></p>
                 </div>
                 <button type="button" class="menu-btn">
                     <span class="inn"></span>
@@ -34,7 +34,26 @@
                     <ul>
                       <li><a href="/top">ホーム</a></li>
                       <li><a href="/profile">プロフィール</a></li>
-                      <li><a href="/logout">ログアウト</a></li>
+                      <!-- {!! Form::open(['url' => '/logout']) !!} -->
+                      <!-- 保険で残し -->
+                      <!-- {{ Form::hidden('logout') }} -->
+                      <!-- <li><a href="/logout">ログアウト</a></li> -->
+                       <!-- @csrf
+                      {!! Form::close() !!} -->
+                      <!-- 失敗 -->
+                      <!-- <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                      </form> -->
+
+                      <!-- ログアウト成功 -->
+                      <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <li><a href="/logout">ログアウト</a></li>
+                      <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                      </form>
                     </ul>
                 </nav>
             </div>
@@ -46,15 +65,15 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>さんの</p>
+                <p>{{Auth::user()->username}}さんの</p>
                 <div>
                 <p>フォロー数</p>
-                <p>名</p>
+                <p>{{Auth::user()->getFollowCount}}名</p>
                 </div>
                 <p class="btn"><a href="/follow-list">フォローリスト</a></p>
                 <div>
                 <p>フォロワー数</p>
-                <p>名</p>
+                <p>{{Auth::user()->getFollowerCount}}名</p>
                 </div>
                 <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>
