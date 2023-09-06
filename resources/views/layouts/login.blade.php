@@ -22,14 +22,15 @@
 <body>
     <header>
         <div id = "head">
-        <h1><a><img src="images/atlas.png"></a></h1>
+        <h1><a herf="/top"><img src="images/atlas.png"></a></h1>
             <div id="">
                 <div id="">
                     <p>{{Auth::user()->username}}さん<img src="images/icon1.png"></p>
                 </div>
-                <button type="button" class="menu-btn">
+                <!-- アコーディオンメニュー残骸 -->
+                <!-- <button type="button" class="menu-btn">
                     <span class="inn"></span>
-                </button>
+                </button> -->
                 <nav class="menu">
                     <ul>
                       <li><a href="/top">ホーム</a></li>
@@ -47,10 +48,7 @@
                       </form> -->
 
                       <!-- ログアウト成功 -->
-                      <form action="{{ route('logout') }}" method="post">
-                        @csrf
-                        <li><a href="/logout">ログアウト</a></li>
-                      <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a>
+                      <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a></li>
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                       </form>
@@ -65,15 +63,15 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>{{Auth::user()->username}}さんの</p>
+                <p>{{ Auth::user()->username }}さんの</p>
                 <div>
                 <p>フォロー数</p>
-                <p>{{Auth::user()->getFollowCount}}名</p>
+                <p>{{ Auth::user()->follows()->count() }}名</p>
                 </div>
                 <p class="btn"><a href="/follow-list">フォローリスト</a></p>
                 <div>
                 <p>フォロワー数</p>
-                <p>{{Auth::user()->getFollowerCount}}名</p>
+                <p>{{ Auth::user()->followers()->count() }}名</p>
                 </div>
                 <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>

@@ -4,52 +4,52 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Follow;
+use Auth;
 
 class FollowsController extends Controller
 {
-    //
     public function followList(){
-        return view('follows.followList');
+        // ユーザーテーブルからアイコンを抽出
+        // 条件追加　その中でフォローIDとユーザーIDが一致してる人
+        $follow_icon = User::get('images')->where('following_id',$user_id);
+        $follow_user = User::get()->where('following_id',$user_id);
+        return view('follows.followList',['follow_icon'=>$follow_icon, 'follow_user'=>$follow_user]);
     }
     public function followerList(){
-        return view('follows.followerList');
+        // ユーザーテーブルからアイコンを抽出
+        // 条件追加　その中でフォローIDとユーザーIDが一致してる人
+        $followed_icon = User::get('images')->where('followed_id',$user_id);
+        return view('follows.followerList',['followed_icon'=>$followed_icon]);
     }
 
-    // 一旦コメントアウト
     // // フォロー機能
-    // public function follow(User $user){
-
-    //     $follower = Auth::user ();
-    //     $is_following = $follower->isFollowing($user->id);
-    //     //・フォローしていなければフォローする
-    //     if($is_following){
-    //         $follower ->follow($user->id);
-    //         return back();
-    //     }
-    // }
-    // //フォロー解除機能
-    // public function unfollow(User $user){
-    //     $follower = Auth::user();
-    //     $is_following = $follower->isFollowing ($user->id);
-    //     //・フォローしていればフォローを解除する
-    //     if(fis_following){
-    //         $follower ->unfollow($user->id);
-    //         return back();
-    //     }
-    // }
-
-    // フォロー機能
-    //
-    public function follow(User $user) {
-        $follow = FollowUser::create([
-            'following_user_id' => \Auth::user()->id,
-            'followed_user_id' => $user->id,
-        ]);
+    public function follow($user_id){
+        // dd($user_id);
+        $follower = Auth::user();
+        // フォローしてるか判断 (していますか？　はい、もしくはいいえ)
+        $is_following = $follower->isFollowing($user_id);
+        // dd($is_following);
+        //　フォローしていなければフォローする
+        // if文の解釈 if(!$is_following)(もしフォローしていればの意味)　!を使い否定形にしてフォローしていなければの意味にする
+        if(!$is_following){
+            // dd($is_following);
+            $follower->follow($user_id);
+            return back();
+        }
     }
-
     //フォロー解除機能
-    public function unfollow(User $user) {
-        $follow = FollowUser::where('following_user_id', \Auth::user()->id)->where('followed_user_id', $user->id)->first();
-        $follow->delete();
+    public function unfollow($user_id){
+        // dd($user_id);
+        $follower = Auth::user();
+        // フォローしてるか判断
+        $is_following = $follower->isFollowing($user_id);
+        //　if文の解釈 $is_following(フォローしていればの意味)なのでフォローしていればフォローを解除する
+        if($is_following){
+            // dd($is_following);
+            $follower->unfollow($user_id);
+            return back();
+        }
     }
+
 }

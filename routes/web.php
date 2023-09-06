@@ -32,15 +32,21 @@ Route::post('/added', 'Auth\RegisterController@added');
 //ログイン中のページ
 Route::get('/top','PostsController@index');
 
+// プロフィール
 Route::get('/profile','UsersController@profile');
 
+//検索画面表示
 Route::get('/search','UsersController@index');
+// 検索機能
+// Rotue::post('/search','UsersController@search');
 
+// フォロー・アンフォロー機能を行う
+ Route::post('/follow/{id}','FollowsController@follow')->name('follow');
+ Route::post('/unfollow/{id}','FollowsController@unfollow')->name('unfollow');
+
+// フォローリスト・フォロワーリストを表示
 Route::get('/follow-list','PostsController@index');
 Route::get('/follower-list','PostsController@index');
 
-Route::get('/follow','FollowsController@follow');
-Route::get('/unfollow','FollowsController@unfollow');
-
-// ログアウトルーティング
+// ログアウト
 Route::post('/logout','Auth\LoginController@logout')->name('logout');

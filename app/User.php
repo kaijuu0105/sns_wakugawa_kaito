@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Auth;
+// use App\Http\Contorollers\FollowController;
 
 class User extends Authenticatable
 {
@@ -42,14 +44,46 @@ class User extends Authenticatable
     // 第四引数は自分の(following_id)外部キー
     public function followers(){
         return $this->belongsToMany(self::class, 'follows', 'followed_id','following_id');
+        // ddd(isFollowing);
     }
 
-    // // フォローしているか判断
-    // public function isFollowing($user_id){
-    //     return (boolean) $this->follows()->where('followeing_id',$user_id)->first();
-    // }
-    // //フォローされているか判断
-    // public function isFollowed ($user_id){
-    //     return (boolean) $this->followers()->where('followed_id', $user_id)->first(['follows.id']);
-    // }
+    // フォローしているか判断
+    public function isFollowing(Int $user_id){
+        // $thisでfollowsメソッドを呼び出し、メソッド内で作った中間テーブルの中で条件指定
+        // where()引数に注目　ログインユーザーではなく$user_idさんが何をされているのか
+        //exists()でデータを返す
+        return (bool) $this->follows()->where('followed_id',$user_id)->exists();
+    }
+    //フォローされているか判断
+    public function isFollowed(Int $user_id){
+        // $thisでfollowsメソッドを呼び出し、メソッド内で作った中間テーブルの中で条件指定
+        // where()引数に注目　ログインユーザーではなく$user_idさんが何をされているのか
+        //exists()でデータを返す
+        return (boolean) $this->followers()->where('following_id', $user_id)->exists();
+    }
+
+    //フォローしている数をカウント
+    public function getFollowCount($user_id){
+    // 引数で渡された$user_idがfollowing_id内に居たらカウント
+        return $this->where('following_id',$user_id)->count () ;
+    }
+    // フォローされている数をカウント
+    public function getFollowerCount($user_id){
+    // 引数で渡された$user_idがfollowed_id内に居たらカウント
+        return $this->where('followed_id',$user_id)->count ();
+    }
+
+    //フォロー機能メソッド
+    public function follow(Int $user_id){
+        // dd(follow);
+        return $this->follows()->attach($user_id);
+    }
+
+    //フォロー解除機能メソッド
+    public function unfollow(Int $user_id){
+        return $this->follows()->detach($user_id);
+        // dd($user_id);
+    }
+
+
 }
