@@ -30,23 +30,38 @@ Route::get('/added', 'Auth\RegisterController@added');
 Route::post('/added', 'Auth\RegisterController@added');
 
 //ログイン中のページ
-Route::get('/top','PostsController@index');
+// Authユーザーしか見れないようにグループの中のルートにmiddlewareを指定
+Route::group(['middleware' => ['auth']], function() {
+  Route::get('/top','PostsController@index');
 
-// プロフィール
-Route::get('/profile','UsersController@profile');
+  // プロフィール
+  Route::get('/profile','UsersController@profile');
+  // プロフィール更新
+  Route::post('/profile-up','UsersController@profileUpdate');
 
-//検索画面表示
-Route::get('/search','UsersController@index');
-// 検索機能
-// Rotue::post('/search','UsersController@search');
+  //投稿機能
+  Route::post('/post/create','PostsController@postCreate');
+  // 投稿内容更新
+  Route::post('/post/{id}/update', 'PostsController@update');
+  // ルーティングを固定しない
+  Route::get('/post/{id}/delete', 'PostsController@delete');
 
-// フォロー・アンフォロー機能を行う
- Route::post('/follow/{id}','FollowsController@follow')->name('follow');
- Route::post('/unfollow/{id}','FollowsController@unfollow')->name('unfollow');
+  //検索画面表示
+  Route::get('/search','UsersController@search');
+  // 検索機能
+  Route::post('/search','UsersController@searching');
 
-// フォローリスト・フォロワーリストを表示
-Route::get('/follow-list','PostsController@index');
-Route::get('/follower-list','PostsController@index');
+  // フォロー・アンフォロー機能を行う
+  Route::post('/follow/{id}','FollowsController@follow')->name('follow');
+  Route::post('/unfollow/{id}','FollowsController@unfollow')->name('unfollow');
 
+  // フォローリスト・フォロワーリストを表示
+  Route::get('/follow-list','FollowsController@followList');
+  Route::get('/follower-list','FollowsController@followerList');
+
+  // フォローユーザー、フォロワーの個人ページ
+  // GET送信じゃないとreturn back()で元の画面に戻って来れない、エラーコードが出る
+  Route::get('/another/{id}','FollowsController@another');
+});
 // ログアウト
 Route::post('/logout','Auth\LoginController@logout')->name('logout');

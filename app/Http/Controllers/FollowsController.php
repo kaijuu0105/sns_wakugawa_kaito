@@ -5,25 +5,47 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Follow;
+use App\Post;
 use Auth;
 
 class FollowsController extends Controller
 {
+    // フォローリストの表示
     public function followList(){
-        // ユーザーテーブルからアイコンを抽出
-        // 条件追加　その中でフォローIDとユーザーIDが一致してる人
-        $follow_icon = User::get('images')->where('following_id',$user_id);
-        $follow_user = User::get()->where('following_id',$user_id);
-        return view('follows.followList',['follow_icon'=>$follow_icon, 'follow_user'=>$follow_user]);
-    }
-    public function followerList(){
-        // ユーザーテーブルからアイコンを抽出
-        // 条件追加　その中でフォローIDとユーザーIDが一致してる人
-        $followed_icon = User::get('images')->where('followed_id',$user_id);
-        return view('follows.followerList',['followed_icon'=>$followed_icon]);
+        $user_id = Auth::id();
+        // dd($user_id);
+        $following_id = Follow::where('following_id',$user_id)->pluck('followed_id');
+        // dd($following_id);
+        $users = Post::whereIn('user_id',$following_id)->get();
+        // dd($users);
+        $icons = User::whereIn('id',$following_id)->get();
+        //dd($icons);
+        return view('follows.followList',['users'=>$users,'icons'=>$icons]);
     }
 
-    // // フォロー機能
+    // フォロワーリストの表示
+    public function followerList(){
+        $user_id = Auth::id();
+        $followed_id = Follow::where('followed_id',$user_id)->pluck('following_id');
+        // dd($followed_id);
+        $users = Post::whereIn('user_id',$followed_id)->get();
+        // dd($users);
+        $icons = User::whereIn('id',$followed_id)->get();
+        return view('follows.followerList',['users'=>$users,'icons'=>$icons]);
+        // $users = Auth::user()->followers()->get();
+        // // dd($users);
+        // return view('follows.followerList',['users'=>$users]);
+    }
+
+    // フォロー、フォロワーの個人ページ
+    public function another($user_id){
+        $profiles = User::where('id',$user_id)->get();
+        $users = Post::where('user_id',$user_id)->get();
+        // dd($users);
+        return view('follows.anotherUser',['users'=>$users,'profiles'=>$profiles]);
+    }
+
+    // フォロー機能
     public function follow($user_id){
         // dd($user_id);
         $follower = Auth::user();

@@ -29,6 +29,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    //リレーションの定義
+    //「1対多」の「多」側 → メソッド名は複数形でhasManyを使う
+    public function posts(){
+        return $this->hasMany('App\Post');
+
+    }
+
     public function follows(){
     //belongsToManyはリレーションの多対多を使用
     // 第一引数は同一テーブルで自身のテーブルの為(self::class)

@@ -22,10 +22,10 @@
 <body>
     <header>
         <div id = "head">
-        <h1><a herf="/top"><img src="images/atlas.png"></a></h1>
+            <a href="/top"><img src="{{asset('images/atlas.png')}}" alt="Atlasロゴ"></a>
             <div id="">
                 <div id="">
-                    <p>{{Auth::user()->username}}さん<img src="images/icon1.png"></p>
+                    <p>{{Auth::user()->username}}さん<img src="{{ asset('storage/'.Auth::user()->images) }}" width="40" height="40" ></p>
                 </div>
                 <!-- アコーディオンメニュー残骸 -->
                 <!-- <button type="button" class="menu-btn">
@@ -35,17 +35,6 @@
                     <ul>
                       <li><a href="/top">ホーム</a></li>
                       <li><a href="/profile">プロフィール</a></li>
-                      <!-- {!! Form::open(['url' => '/logout']) !!} -->
-                      <!-- 保険で残し -->
-                      <!-- {{ Form::hidden('logout') }} -->
-                      <!-- <li><a href="/logout">ログアウト</a></li> -->
-                       <!-- @csrf
-                      {!! Form::close() !!} -->
-                      <!-- 失敗 -->
-                      <!-- <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a>
-                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                      </form> -->
 
                       <!-- ログアウト成功 -->
                       <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a></li>

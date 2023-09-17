@@ -2,7 +2,7 @@
 
 @section('content')
 
-{!! Form::open(['url'=>'user.search']) !!}
+{!! Form::open(['url' => '/search']) !!}
 <!-- 検索フォーム作成 -->
 {{ Form::input('text', 'searchUsers', '', ['require', 'class'=>'search', 'placeholder'=>'ユーザー名' ])}}
 <button type="submit" class="s-btn"><img src="images/search.png" width="20" height="20"></button>
