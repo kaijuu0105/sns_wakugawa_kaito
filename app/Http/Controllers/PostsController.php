@@ -20,14 +20,19 @@ class PostsController extends Controller
         $user_id = Auth::id();
         // followテーブルから該当するレコードを取得、該当するレコードからpluckで欲しいカラム情報を取得
         $following_id = Follow::where('following_id',$user_id)->pluck('followed_id');
-        // dd($followed_id);
+        // dd($following_id);
+        // $suuji = '4,7';
         // whereInはこの例だと、idがフォローしているidもしくは、ログインユーザーの中で該当するidをUserテーブルから抽出
-        $posts = Post::whereIn('user_id',$following_id)->get();
+        $posts = Post::whereIn('user_id',$following_id)->orWhere('user_id',$user_id )->get();
         // dd($posts);
         return view('posts.index',['posts'=>$posts,]);
     }
 
     public function postCreate(Request $request){
+
+        $request->validate([
+            'newPost' => 'required|min:1|max:150',
+        ]);
         $post = $request->input('newPost');
         // dd($post);
         $user_id = Auth::id();

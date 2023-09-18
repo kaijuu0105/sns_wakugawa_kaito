@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\User;
 use Auth;
 
@@ -18,20 +19,30 @@ class UsersController extends Controller
     }
 
     public function profileUpdate(Request $request){
+        $request->validate([
+            'upUsername' => 'required|min:2|max:10',
+            'upMail' => 'required|unique:users,mail->ignore(Auth::id()|min:5|max:40|email',
+            'upPassword' => 'required|alpha_num|min:8|max:20|confirmed',
+            'upPassword_confirmation' => 'required|alpha_num|min:8|max:20|',
+            'upBio' => 'max:150',
+            'images' => 'mimes:jpg,png,bmp,gif,svg',
+
+        ]);
         // 1つ目の処理
         $id = Auth::id();
         $up_username = $request->input('upUsername');
         $up_mail = $request->input('upMail');
-        // $up_password =$request->input('upPassword');
+        $up_password =$request->input('upPassword');
         $up_bio = $request->input('upBio');
-
-        if(($request->file('image'))){
+        $icon = $request->file('images');
+        // dd($icon);
+        if($icon){
             $icon_name = $request->file('images')->getClientOriginalName();
             // dd($icon_name);
             $images = $request->file('images')->storeAs('public',$icon_name);
 
              User::where('id', $id)->update([
-                'images' => $icon_name,
+              'images' => $icon_name,
             ]);
         }
         // 2つ目の処理 Userテーブルに指定したidをupdate
@@ -39,7 +50,7 @@ class UsersController extends Controller
         User::where('id', $id)->update([
               'username' => $up_username,
               'mail' => $up_mail,
-            //   'password' => $up_password,
+              'password' => bcrypt($up_password),
               'bio' => $up_bio,
         ]);
         // 3つ目の処理

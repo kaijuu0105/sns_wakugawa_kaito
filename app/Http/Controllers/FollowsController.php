@@ -19,7 +19,7 @@ class FollowsController extends Controller
         $users = Post::whereIn('user_id',$following_id)->get();
         // dd($users);
         $icons = User::whereIn('id',$following_id)->get();
-        //dd($icons);
+        // dd($icons);
         return view('follows.followList',['users'=>$users,'icons'=>$icons]);
     }
 

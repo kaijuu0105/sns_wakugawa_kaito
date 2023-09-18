@@ -6,10 +6,7 @@
   <tr>
     <td>
       <!-- GET送信で次の画面遷移をしないとretuen back()で元の画面に戻ってこれなくなる -->
-      <form action="/another/{{ $icon->id }}" method="GET">
-      @csrf
-      <input type="image" src="{{ $icon->images }}" alt="ユーザーアイコン">
-      </form>
+      <a href="/another/{{ $icon->id }}" ><img src="{{ asset('storage/'.$icon->images) }}" width="40" height="40" ></a>
     </td>
   </tr>
 @endforeach
@@ -18,6 +15,7 @@
   <tr>
     <div class="">
       <!-- <td><img src="image" alt="ユーザーアイコン"></td> -->
+      <td><img src="{{ asset('storage/'.$user->user->images) }}" width="40" height="40" alt="ユーザーアイコン"></td>
       <td>{{ $user->user->username }}</td>
       <td>{{ $user->post}}</td>
     </div>

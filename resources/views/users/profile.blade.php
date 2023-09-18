@@ -16,14 +16,14 @@
         <label class="ct-label">mail address</address></label>
         <input type="email" name="upMail" value="{{ Auth::user()->mail }}" class="up-profile">
       </div>
-      <!-- <div class="ct-block">
+      <div class="ct-block">
         <label class="ct-label">password</label>
         <input type="password" name="upPassword" class="up-profile">
       </div>
       <div class="ct-block">
         <label class="ct-label">password comfirm</label>
-        <input type="password" name="upPassword-comfirm" class="up-profile">
-      </div> -->
+        <input type="password" name="upPassword_confirmation" class="up-profile">
+      </div>
       <div class="ct-block">
         <label class="ct-label">bio</label>
         <input type="text" name="upBio" value="{{ Auth::user()->bio }}" class="up-profile">
@@ -37,5 +37,14 @@
   </div>
 </div>
 
+    @if($errors->any())
+      <div class="alert alert-danger">
+        <ul>
+          @foreach($errors->all() as $error)
+          <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+      </div>
+    @endif
 
 @endsection
