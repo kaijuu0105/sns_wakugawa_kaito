@@ -1,10 +1,124 @@
 @charset "UTF-8";
 
-html{
+html {
     height: 100%;
 }
 
-body{
+img {
+    width: 125px;
+    padding-bottom: 5px;
+}
+
+a {
+    color: white;
+}
+
+.login {
+    position: relative;
+}
+
+header {
+    margin-top: 20%;
+}
+
+header p {
+    font-size: 25px;
+    margin-bottom: 5%;
+}
+
+body {
     height: 100%;
-    background: #186AC9;
+    background: linear-gradient(#0088FF, 55%, #FFFF00);
+    text-align: center;
+    color: white;
+    font-family: inherit
+}
+
+.login-container {
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 30%;
+    margin: auto;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    border-radius: 10px;
+}
+
+#clear {
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 30%;
+    margin: auto;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    border-radius: 10px;
+}
+
+.title {
+    margin-bottom: 15px;
+    font-size: 17px;
+    letter-spacing: 1px;
+}
+
+.added-title {
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: bolder;
+    margin-bottom: 25px;
+}
+
+.added-p {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    text-align: initial;
+    margin-left: 10%;
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
+input {
+    height: 30px;
+    width: 190px;
+    margin-bottom: 10%;
+    border-radius: 6px;
+    border: black;
+}
+
+input.btn {
+    font-size: 15px;
+    color: white;
+    background-color: red;
+    width: 95px;
+    height: 35px;
+}
+
+.user-create {
+    font-size: 12px;
+}
+
+.btn {
+    font-size: 15px;
+    color: white;
+    background-color: red;
+    width: 95px;
+    height: 35px;
+}
+
+.login-btn {
+    text-align: right;
+    margin-right: 32px;
+}
+
+.added-btn {
+    font-size: 15px;
+    background-color: red;
+    width: 123px;
+    height: 37px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+
 }

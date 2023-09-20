@@ -2,6 +2,7 @@
 
 @section('content')
 
+<h1 class='list-title'>Follow List</h1>
 @foreach($icons as $icon)
   <tr>
     <td>
