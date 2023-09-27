@@ -1,9 +1,9 @@
 @extends('layouts.login')
 
 @section('content')
-<div class=container>
+<div class=profile-container>
   <div class=user-icon>
-    <img src="{{ asset('storage/'.Auth::user()->images) }}" width="40" height="40" >
+    <img src="{{ asset('storage/'.Auth::user()->images) }}" width="40" height="40" class="icon">
   </div>
   <div class="profile-up">
     <form action="/profile-up" method="post" enctype="multipart/form-data">
@@ -30,7 +30,11 @@
       </div>
       <div class="ct-block">
         <label class="ct-label">icon image</label>
-        <input type="file" name="images" class="up-icon">
+        <div class="up-file">
+          <label class="file-label">
+            <input type="file" name="images" class="up-icon">ファイルを選択
+          </label>
+        </div>
       </div>
       <button type="submit" class="up-btn">更新</button>
     </form>

@@ -23,7 +23,7 @@ class PostsController extends Controller
         // dd($following_id);
         // $suuji = '4,7';
         // whereInはこの例だと、idがフォローしているidもしくは、ログインユーザーの中で該当するidをUserテーブルから抽出
-        $posts = Post::whereIn('user_id',$following_id)->orWhere('user_id',$user_id )->get();
+        $posts = Post::whereIn('user_id',$following_id)->orWhere('user_id',$user_id )->orderBy('updated_at','asc')->get();
         // dd($posts);
         return view('posts.index',['posts'=>$posts,]);
     }

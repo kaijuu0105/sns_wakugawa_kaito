@@ -60,7 +60,7 @@ class UsersController extends Controller
     // リンクを押してget送信 searchページの画面表示
     public function search(){
         $users = User::where('id', '<>', Auth::id())->get();
-        // dd(Auth::id());
+        // dd($users);
         return view('users.search',['users'=>$users]);
     }
 

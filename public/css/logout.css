@@ -18,12 +18,12 @@ a {
 }
 
 header {
-    margin-top: 20%;
+    margin-top: 10%;
 }
 
 header p {
     font-size: 25px;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
 }
 
 body {
@@ -36,16 +36,21 @@ body {
 
 .login-container {
     background-color: rgba(0, 0, 0, 0.3);
-    width: 30%;
+    width: 18%;
     margin: auto;
     padding-top: 25px;
     padding-bottom: 25px;
     border-radius: 10px;
 }
 
+#container {
+    margin-right: auto;
+    margin-left: auto;
+}
+
 #clear {
     background-color: rgba(0, 0, 0, 0.3);
-    width: 30%;
+    width: 18%;
     margin: auto;
     padding-top: 25px;
     padding-bottom: 25px;
@@ -53,27 +58,41 @@ body {
 }
 
 .title {
+    position: relative;
     margin-bottom: 15px;
-    font-size: 17px;
+    font-size: 15px;
     letter-spacing: 1px;
 }
 
+span {
+    margin-left: 3px;
+}
+
 .added-title {
-    font-size: 14px;
+    font-size: 15px;
     font-family: inherit;
     font-weight: bolder;
     margin-bottom: 25px;
 }
 
 .added-p {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
     font-size: 14px;
     margin-bottom: 20px;
+    position: relative;
+    left: 15px;
+}
+
+p {
+    margin-bottom: 10px;
 }
 
 label {
+    position: relative;
+    right: 25%;
     display: block;
-    text-align: initial;
-    margin-left: 10%;
     margin-bottom: 5px;
     font-size: 12px;
 }
@@ -84,6 +103,7 @@ input {
     margin-bottom: 10%;
     border-radius: 6px;
     border: black;
+    padding-left: 10px;
 }
 
 input.btn {
@@ -107,8 +127,8 @@ input.btn {
 }
 
 .login-btn {
-    text-align: right;
-    margin-right: 32px;
+    position: relative;
+    left: 48px;
 }
 
 .added-btn {
@@ -121,4 +141,13 @@ input.btn {
     justify-content: center;
     border-radius: 7px;
 
+}
+
+#container {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+p.p-name {
+    margin-bottom: 10px;
 }

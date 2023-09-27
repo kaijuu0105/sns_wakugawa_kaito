@@ -5,7 +5,7 @@ html {
 }
 
 header {
-  margin-top: 15%;
+  margin-top: 6%;
 }
 
 img {
@@ -15,7 +15,7 @@ img {
 
 header p {
   font-size: 25px;
-  margin-bottom: 1%;
+  margin-bottom: 10px;
 }
 
 body {
@@ -28,23 +28,24 @@ body {
 
 .register-container {
   background-color: rgba(0, 0, 0, 0.3);
-  width: 30%;
-  margin: auto;
+  width: 18%;
+  margin-right: auto;
+  margin-left: auto;
   padding-top: 25px;
-  padding-bottom: 25px;
+  padding-bottom: 0px;
   border-radius: 10px;
 }
 
 .title {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   font-size: 17px;
   letter-spacing: 1px;
 }
 
 label {
-  display: block;
-  text-align: initial;
-  margin-left: 10%;
+  position: relative;
+  left: 20px;
+  display: flex;
   margin-bottom: 5px;
   font-size: 12px;
 }
@@ -52,9 +53,9 @@ label {
 input {
   height: 30px;
   width: 190px;
-  margin-bottom: 10%;
+  margin-bottom: 20px;
   border-radius: 6px;
-  border: black;
+  padding-left: 10px;
 }
 
 input.btn {
@@ -65,13 +66,12 @@ input.btn {
   height: 35px;
 }
 
-.register-a {
-  padding-top: 10px;
-}
-
-
-
 .register-btn {
   text-align: right;
   margin-right: 20px;
+}
+
+p.register-a {
+  margin-top: 5px;
+  padding-bottom: 20px;
 }

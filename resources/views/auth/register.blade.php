@@ -11,6 +11,7 @@
 <!-- 適切なURLを入力してください -->
 {!! Form::open(['url' => '/register']) !!}
 <div class="register-container">
+  <div class="register-register">
     <h2 class="title">新規ユーザー登録</h2>
     <div class="login-form">
       {{ Form::label("user name") }}
@@ -20,15 +21,16 @@
       {{ Form::text('mail',null,['class' => 'input']) }}
 
       {{ Form::label('password') }}
-      {{ Form::text('password',null,['class' => 'input']) }}
+      {{ Form::password('password',null,['class' => 'input']) }}
 
       {{ Form::label('pass comfirm') }}
-      {{ Form::text('password_confirmation',null,['class' => 'input']) }}
+      {{ Form::password('password_confirmation',null,['class' => 'input']) }}
     </div>
     <div class="register-btn">
       {{ Form::submit('REGISTER',['class'=>'btn']) }}
     </div>
     <p class="register-a"><a href="/login">ログイン画面へ戻る</a></p>
+  </div>
 </div>
 
   {!! Form::close() !!}
