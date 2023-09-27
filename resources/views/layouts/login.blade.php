@@ -22,28 +22,30 @@
 <body>
     <header>
         <div id = "head">
-            <a href="/top"><img src="{{asset('images/atlas.png')}}" alt="Atlasロゴ"></a>
-            <div id="">
-                <div id="">
-                    <p>{{Auth::user()->username}}さん<img src="{{ asset('storage/'.Auth::user()->images) }}" width="40" height="40" ></p>
-                </div>
-                <!-- アコーディオンメニュー残骸 -->
-                <!-- <button type="button" class="menu-btn">
-                    <span class="inn"></span>
-                </button> -->
+            <a href="/top" class="logo"><img src="{{asset('images/atlas.png')}}" alt="Atlasロゴ" class="logo"></a>
+            <p class="username">{{Auth::user()->username}}<span class="name">さん</span></p>
+            <!-- アコーディオンメニュー -->
+            <button type="button" class="menu-btn">
+                <span class="inn"></span>
+            </button>
                 <nav class="menu">
-                    <ul>
-                      <li><a href="/top">ホーム</a></li>
-                      <li><a href="/profile">プロフィール</a></li>
-
-                      <!-- ログアウト成功 -->
-                      <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a></li>
-                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                      </form>
+                    <ul class="menu-list">
+                        <div class="menu-box">
+                            <li class="menu-home"><a href="/top" class="a-gray">ホーム</a></li>
+                        </div>
+                        <div class="profile-box">
+                            <li class="menu-profile"><a href="/profile" class="a-white">プロフィール編集</a></li>
+                        </div>
+                        <!-- ログアウト成功 -->
+                        <div class="menu-box">
+                            <li class="menu-home"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="a-gray">ログアウト</a></li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
                     </ul>
                 </nav>
-            </div>
+            <img src="{{ asset('storage/'.Auth::user()->images) }}" class="header-icon icon">
         </div>
     </header>
     <div id="row">
@@ -52,24 +54,24 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>{{ Auth::user()->username }}さんの</p>
-                <div>
-                <p>フォロー数</p>
-                <p>{{ Auth::user()->follows()->count() }}名</p>
+                <p class="side-name">{{ Auth::user()->username }}さんの</p>
+                <div class="side-list">
+                    <p>フォロー数</p>
+                    <p class="count">{{ Auth::user()->follows()->count() }}名</p>
                 </div>
-                <p class="btn"><a href="/follow-list">フォローリスト</a></p>
-                <div>
-                <p>フォロワー数</p>
-                <p>{{ Auth::user()->followers()->count() }}名</p>
+                <p class="list-btn"><a href="/follow-list" class="follow-list">フォローリスト</a></p>
+                <div class="side-list">
+                    <p >フォロワー数</p>
+                    <p class="count">{{ Auth::user()->followers()->count() }}名</p>
                 </div>
-                <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
+                <p class="list-btn"><a href="/follower-list" class="follower-list">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="/search">ユーザー検索</a></p>
+            <p class="search-btn"><a href="/search" class="search-list">ユーザー検索</a></p>
         </div>
     </div>
     <footer>
     </footer>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <script src="./js/script.js"></script>
+    <script src="{{ asset('js/script.js') }} "></script>
 </body>
 </html>

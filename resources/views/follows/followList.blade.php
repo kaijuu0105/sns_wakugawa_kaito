@@ -1,26 +1,34 @@
 @extends('layouts.login')
 
 @section('content')
-
-<h1 class='list-title'>Follow List</h1>
-@foreach($icons as $icon)
-  <tr>
-    <td>
-      <!-- GET送信で次の画面遷移をしないとretuen back()で元の画面に戻ってこれなくなる -->
-      <a href="/another/{{ $icon->id }}" ><img src="{{ asset('storage/'.$icon->images) }}" width="40" height="40" ></a>
-    </td>
-  </tr>
-@endforeach
-
-@foreach($users as $user)
-  <tr>
-    <div class="">
-      <!-- <td><img src="image" alt="ユーザーアイコン"></td> -->
-      <td><img src="{{ asset('storage/'.$user->user->images) }}" width="40" height="40" alt="ユーザーアイコン"></td>
-      <td>{{ $user->user->username }}</td>
-      <td>{{ $user->post}}</td>
+<div class="follows-list">
+  <div class="list-title">
+    <h1>Follow List</h1>
+  </div>
+  <div class="icon-list">
+    <div class="follow-icon">
+      @foreach($icons as $icon)
+        <tr>
+          <td>
+            <!-- GET送信で次の画面遷移をしないとretuen back()で元の画面に戻ってこれなくなる -->
+            <a href="/another/{{ $icon->id }}" ><img src="{{ asset('storage/'.$icon->images) }}" width="40" height="40" class="icon follow-img"></a>
+          </td>
+        </tr>
+      @endforeach
     </div>
-  </tr>
-@endforeach
+  </div>
+</div>
+<div class="table">
+  <table class='table table-hover'>
+    @foreach($users as $user)
+      <tr class="post-container">
+        <td class="post-img"><img src="{{ asset('storage/'.$user->user->images) }}" width="40" height="40" alt="ユーザーアイコン" class="icon post-icon"></td>
+        <td class="post-name">{{ $user->user->username }}</td>
+        <td class="post-time">{{ $user->created_at }}</td>
+        <td class="user-post">{{ $user->post}}</td>
+      </tr>
+    @endforeach
+  </table>
+</div>
 
 @endsection

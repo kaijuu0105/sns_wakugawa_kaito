@@ -2,27 +2,32 @@
 
 @section('content')
 <div class="post-form">
-  <!-- アイコンを登録してないから表示不可 -->
-  <img src="{{ asset('storage/'.Auth::user()->images) }}" width="40" height="40" >
-  <!-- ここから投稿フォーム作成 -->
-  <form action="/post/create" method="post">
-  @csrf
-    <textarea name="newPost" class="new-post" value="null" cols="50" rows="6" maxlength="150" placeholder="投稿内容を入力してください"></textarea>
-    <button type="submit" class="post-btn"><img src="images/post.png" width="20" height="20"></button>
-  </form>
+  <img src="{{ asset('storage/'.Auth::user()->images) }}" width="30" height="30" class="icon form-icon">
+  <div class="create">
+    <!-- ここから投稿フォーム作成 -->
+    <form action="/post/create" method="post">
+    @csrf
+      <textarea name="newPost" class="new-post" value="null" cols="50" rows="6" maxlength="150" placeholder="投稿内容を入力してください"></textarea>
+      <input type="image" src="images/post.png" width="20" height="20" class="post-btn">
+    </form>
+  </div>
 </div>
-
+<div class="table">
   <table class='table table-hover'>
     @foreach($posts as $post)
-    <tr class=post>
-      <td><img src="{{ asset('storage/'.$post->user->images) }}" width="40" height="40" ></td>
-      <td>{{ $post->user->username }}</td>
-      <td>{{ $post->post }}</td>
-      <td>{{ $post->created_at }}</td>
+    <tr class="post-container">
+      <td class="post-img"><img src="{{ asset('storage/'.$post->user->images) }}" width="40" height="40" class="icon post-icon"></td>
+      <td class="post-name">{{ $post->user->username }}</td>
+      <td class="post-time">{{ $post->updated_at }}</td>
+      <td class="user-post">{{ $post->post }}</td>
+
       @isset($post->post)
         @if(Auth::id() === $post->user_id)
           <!-- モーダル機能 -->
-          <td><a class="js-modal-open" post="{{ $post->post }}" post_id="{{ $post->id }}"><img src="images/edit.png" width="20" height="20" alt="更新"></a></td>
+          <td class="post-up"><a class="js-modal-open" post="{{ $post->post }}" post_id="{{ $post->id }}"><img src="images/edit.png" width="20" height="20" class="up-btn" alt="更新"></a></td>
+          <!-- 削除機能 -->
+          <td class="post-del"><a class="btn-primary" href="/post/{{ $post->id }}/delete"><img src="images/trash.png" width="20" height="20" class="del-btn" alt="削除"><img src="images/trash-h.png" width="20" height="20" class="trash-btn" alt="削除"></a></td><br>
+
           <!-- モーダルの中身 -->
           <div class="modal js-modal">
             <div class="modal__bg js-modal-close"></div>
@@ -32,19 +37,17 @@
                 <input type="hidden" name="id" class="modal_id" >
                 <!-- class="js-modal-close"を記入した事によりデータを押し上げる前に閉じる処理が行われている -->
                 <!-- js-modal-closeを記入しなくても閉じる処理が行われた -->
-                <input type="image" src="images/edit.png" width="20" height="20" alt="更新">
+                <div class="up-img">
+                  <input type="image" src="images/edit.png" width="20" height="20" alt="更新">
+                </div>
                 {{ csrf_field() }}
               </form>
             </div>
           </div>
-          <!-- 削除機能 -->
-          <td><a class="btn-primary" href="/post/{{ $post->id }}/delete"><img src="images/trash.png" width="20" height="20" alt="削除"></a></td><br>
-        @else
-          <br>
         @endif
       @endisset
     </tr>
     @endforeach
   </table>
-
+</div>
 @endsection
