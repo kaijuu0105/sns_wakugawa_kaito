@@ -10,6 +10,15 @@
       <textarea name="newPost" class="new-post" value="null" cols="50" rows="6" maxlength="150" placeholder="投稿内容を入力してください"></textarea>
       <input type="image" src="images/post.png" width="30" height="30" class="post-btn">
     </form>
+    @if($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+        @foreach($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+    @endif
   </div>
 </div>
 <div class="table">
@@ -18,8 +27,8 @@
     <tr class="post-container">
       <td class="post-img"><img src="{{ asset('storage/'.$post->user->images) }}" width="40" height="40" class="icon post-icon"></td>
       <td class="post-name">{{ $post->user->username }}</td>
-      <td class="post-time">{{ $post->updated_at }}</td>
-      <td class="user-post">{{ $post->post }}</td>
+      <td class="post-time">{{ $post->updated_at->format('Y-m-d H:i') }}</td>
+      <td class="user-post">{!! nl2br(htmlspecialchars($post->post)) !!}</td>
 
       @isset($post->post)
         @if(Auth::id() === $post->user_id)
@@ -41,6 +50,15 @@
                   <input type="image" src="images/edit.png" width="30" height="30" alt="更新">
                 </div>
                 {{ csrf_field() }}
+                @if($errors->any())
+                  <div class="alert alert-danger">
+                    <ul>
+                      @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                      @endforeach
+                    </ul>
+                  </div>
+                @endif
               </form>
             </div>
           </div>

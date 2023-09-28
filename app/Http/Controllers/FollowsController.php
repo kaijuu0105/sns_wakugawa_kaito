@@ -16,7 +16,7 @@ class FollowsController extends Controller
         // dd($user_id);
         $following_id = Follow::where('following_id',$user_id)->pluck('followed_id');
         // dd($following_id);
-        $users = Post::whereIn('user_id',$following_id)->get();
+        $users = Post::whereIn('user_id',$following_id)->orderBy('updated_at','desc')->get();
         // dd($users);
         $icons = User::whereIn('id',$following_id)->get();
         // dd($icons);
@@ -28,7 +28,7 @@ class FollowsController extends Controller
         $user_id = Auth::id();
         $followed_id = Follow::where('followed_id',$user_id)->pluck('following_id');
         // dd($followed_id);
-        $users = Post::whereIn('user_id',$followed_id)->get();
+        $users = Post::whereIn('user_id',$followed_id)->orderBy('updated_at','desc')->get();
         // dd($users);
         $icons = User::whereIn('id',$followed_id)->get();
         return view('follows.followerList',['users'=>$users,'icons'=>$icons]);
@@ -40,7 +40,7 @@ class FollowsController extends Controller
     // フォロー、フォロワーの個人ページ
     public function another($user_id){
         $profiles = User::where('id',$user_id)->get();
-        $users = Post::where('user_id',$user_id)->get();
+        $users = Post::where('user_id',$user_id)->orderBy('updated_at','desc')->get();
         // dd($users);
         return view('follows.anotherUser',['users'=>$users,'profiles'=>$profiles]);
     }

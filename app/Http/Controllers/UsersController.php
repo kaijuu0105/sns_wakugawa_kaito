@@ -22,8 +22,8 @@ class UsersController extends Controller
         $request->validate([
             'upUsername' => 'required|min:2|max:10',
             'upMail' => 'required|unique:users,mail->ignore(Auth::id()|min:5|max:40|email',
-            'upPassword' => 'required|alpha_num|min:8|max:20|confirmed',
-            'upPassword_confirmation' => 'required|alpha_num|min:8|max:20|',
+            'Password' => 'required|alpha_num|min:8|max:20|confirmed',
+            'Password_confirmation' => 'required|alpha_num|min:8|max:20|',
             'upBio' => 'max:150',
             'images' => 'mimes:jpg,png,bmp,gif,svg',
 
@@ -32,7 +32,7 @@ class UsersController extends Controller
         $id = Auth::id();
         $up_username = $request->input('upUsername');
         $up_mail = $request->input('upMail');
-        $up_password =$request->input('upPassword');
+        $up_password =$request->input('Password');
         $up_bio = $request->input('upBio');
         $icon = $request->file('images');
         // dd($icon);
@@ -67,10 +67,11 @@ class UsersController extends Controller
     // searchページの検索内容を送る　post送信
     public function searching(Request $request){
         $search = $request->input('searchUsers');
+        $username = Auth::user()->username;
 
-        if (!empty($search)){
+        if (!empty($search) && $search != $username){
             $users=User::where('username', 'LIKE', '%'.$search.'%')->get();
-            return view('users.search',['users'=>$users]);
+            return view('users.search',['users'=>$users, 'search'=>$search]);
             }else{
             return $this->search();
         }

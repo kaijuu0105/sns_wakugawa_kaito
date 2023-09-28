@@ -18,11 +18,11 @@
       </div>
       <div class="ct-block">
         <label class="ct-label">password</label>
-        <input type="password" name="upPassword" class="up-profile">
+        <input type="password" name="Password" class="up-profile">
       </div>
       <div class="ct-block">
         <label class="ct-label">password comfirm</label>
-        <input type="password" name="upPassword_confirmation" class="up-profile">
+        <input type="password" name="Password_confirmation" class="up-profile">
       </div>
       <div class="ct-block">
         <label class="ct-label">bio</label>

@@ -19,12 +19,12 @@
             @if(auth()->user()->isFollowing($profile->id))
               <form action="/unfollow/{{ $profile->id }}" method="POST">
                 @csrf
-                <button type="submit" class="following-btn unf-btn">フォロー解除くん</button>
+                <button type="submit" class="following-btn unf-btn">フォロー解除</button>
               </form>
               @else
               <form action="/follow/{{ $profile->id }}" method="POST">
               @csrf
-              <button type="submit" class="following-btn f-btn">フォローちゃん</button>
+              <button type="submit" class="following-btn f-btn">フォローする</button>
               </form>
             @endif
           </div>
@@ -39,7 +39,7 @@
     <tr class="post-container">
       <td class="post-img"><img src="{{ asset('storage/'.$user->user->images) }}" width="40" height="40" alt="ユーザーアイコン" class="icon post-icon"></td>
       <td class="post-name">{{ $user->user->username }}</td>
-      <td class="post-time">{{ $user->created_at }}</td>
+      <td class="post-time">{{ $user->updated_at->format('Y-m-d H:i') }}</td>
       <td class="user-post">{{ $user->post}}</td>
     </tr>
   @endforeach

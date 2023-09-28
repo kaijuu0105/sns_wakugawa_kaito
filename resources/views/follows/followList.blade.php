@@ -11,7 +11,7 @@
         <tr>
           <td>
             <!-- GET送信で次の画面遷移をしないとretuen back()で元の画面に戻ってこれなくなる -->
-            <a href="/another/{{ $icon->id }}" ><img src="{{ asset('storage/'.$icon->images) }}" width="40" height="40" class="icon follow-img"></a>
+            <a href="/another/{{ $icon->id }}" ><img src="{{ asset('storage/'.$icon->images) }}" width="40" height="40" class="icon follow-icons"></a>
           </td>
         </tr>
       @endforeach
@@ -22,10 +22,14 @@
 <table class='follow-table table-hover'>
   @foreach($users as $user)
     <tr class="post-container">
-      <td class="post-img"><img src="{{ asset('storage/'.$user->user->images) }}" width="40" height="40" alt="ユーザーアイコン" class="icon post-icon"></td>
+      <td class="follow-img">
+        <a href="/another/{{ $icon->id }}" class="a-follow">
+          <img src="{{ asset('storage/'.$user->user->images) }}" width="40" height="40" alt="ユーザーアイコン" class="icon follows-icon">
+        </a>
+      </td>
       <td class="post-name">{{ $user->user->username }}</td>
-      <td class="post-time">{{ $user->created_at }}</td>
-      <td class="user-post">{{ $user->post}}</td>
+      <td class="post-time">{{ $user->updated_at->format('Y-m-d H:i') }}</td>
+      <td class="follow-post">{{ $user->post}}</td>
     </tr>
   @endforeach
 </table>

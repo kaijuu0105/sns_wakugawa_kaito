@@ -31,15 +31,15 @@
                 <nav class="menu">
                     <ul class="menu-list">
                         <div class="menu-box">
-                            <li class="menu-home"><a href="/top" class="a-gray">ホーム</a></li>
+                            <li class="menu-home"><a href="/top" class="a-menu">ホーム</a></li>
                         </div>
-                        <div class="profile-box">
-                            <li class="menu-profile"><a href="/profile" class="a-white">プロフィール編集</a></li>
+                        <div class="menu-box">
+                            <li class="menu-home"><a href="/profile" class="a-menu">プロフィール編集</a></li>
                         </div>
                         <!-- ログアウト成功 -->
                         <div class="menu-box">
-                            <li class="menu-home"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="a-gray">ログアウト</a></li>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <li class="menu-home"><a href="{{ route('login') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="a-menu">ログアウト</a></li>
+                            <form id="logout-form" action="{{ route('login') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
                         </div>

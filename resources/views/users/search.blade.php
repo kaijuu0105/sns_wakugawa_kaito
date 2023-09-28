@@ -5,12 +5,12 @@
   {!! Form::open(['url' => '/search']) !!}
   <!-- 検索フォーム作成 -->
   {{ Form::input('text', 'searchUsers', '', ['require', 'class'=>'search', 'placeholder'=>'ユーザー名' ])}}
-  <button type="submit" class="s-btn"><img src="images/search.png" width="35" height="35" class="search-img"></button>
+  <button type="submit" class="s-btn"><img src="images/search.png" width="30" height="30" class="search-img"></button>
 
   <!-- 検索ワードが入力されていたら表示 -->
-  @if(!empty($searchUsers))
+  @if(!empty($search))
   <div class="search-users">
-    <p>検索ワード:{{ $searchUsers }}</p>
+    <p class="p-search">検索ワード:{{ $search }}</p>
   </div>
   @endif
   {!! Form::close() !!}
@@ -30,12 +30,12 @@
           @if(auth()->user()->isFollowing($user->id))
           <form action="/unfollow/{{ $user->id }}" method="POST">
             @csrf
-            <button type="submit" class="unf-btn">フォロー解除くん</button>
+            <button type="submit" class="unf-btn">フォロー解除</button>
           </form>
           @else
           <form action="/follow/{{ $user->id }}" method="POST">
             @csrf
-            <button type="submit" class="f-btn">フォローちゃん</button>
+            <button type="submit" class="f-btn">フォローする</button>
           </form>
           @endif
         </td>
