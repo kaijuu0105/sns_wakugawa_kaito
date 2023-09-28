@@ -8,11 +8,7 @@
     <form action="/post/create" method="post">
     @csrf
       <textarea name="newPost" class="new-post" value="null" cols="50" rows="6" maxlength="150" placeholder="投稿内容を入力してください"></textarea>
-<<<<<<< HEAD
       <input type="image" src="images/post.png" width="30" height="30" class="post-btn">
-=======
-      <input type="image" src="images/post.png" width="20" height="20" class="post-btn">
->>>>>>> 714f5a9e0e0bc38a1f9ccfd9b6a1ad1d71bd30f3
     </form>
   </div>
 </div>
@@ -28,15 +24,9 @@
       @isset($post->post)
         @if(Auth::id() === $post->user_id)
           <!-- モーダル機能 -->
-<<<<<<< HEAD
           <td class="post-up"><a class="js-modal-open" post="{{ $post->post }}" post_id="{{ $post->id }}"><img src="images/edit.png" width="30" height="30" class="up-btn" alt="更新"></a></td>
           <!-- 削除機能 -->
           <td class="post-del"><a class="btn-primary" href="/post/{{ $post->id }}/delete"><img src="images/trash.png" width="30" height="30" class="del-btn" alt="削除"><img src="images/trash-h.png" width="30" height="30" class="trash-btn" alt="削除"></a></td><br>
-=======
-          <td class="post-up"><a class="js-modal-open" post="{{ $post->post }}" post_id="{{ $post->id }}"><img src="images/edit.png" width="20" height="20" class="up-btn" alt="更新"></a></td>
-          <!-- 削除機能 -->
-          <td class="post-del"><a class="btn-primary" href="/post/{{ $post->id }}/delete"><img src="images/trash.png" width="20" height="20" class="del-btn" alt="削除"><img src="images/trash-h.png" width="20" height="20" class="trash-btn" alt="削除"></a></td><br>
->>>>>>> 714f5a9e0e0bc38a1f9ccfd9b6a1ad1d71bd30f3
 
           <!-- モーダルの中身 -->
           <div class="modal js-modal">
@@ -48,11 +38,7 @@
                 <!-- class="js-modal-close"を記入した事によりデータを押し上げる前に閉じる処理が行われている -->
                 <!-- js-modal-closeを記入しなくても閉じる処理が行われた -->
                 <div class="up-img">
-<<<<<<< HEAD
                   <input type="image" src="images/edit.png" width="30" height="30" alt="更新">
-=======
-                  <input type="image" src="images/edit.png" width="20" height="20" alt="更新">
->>>>>>> 714f5a9e0e0bc38a1f9ccfd9b6a1ad1d71bd30f3
                 </div>
                 {{ csrf_field() }}
               </form>
