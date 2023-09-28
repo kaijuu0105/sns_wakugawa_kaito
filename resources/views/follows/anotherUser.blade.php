@@ -19,12 +19,12 @@
             @if(auth()->user()->isFollowing($profile->id))
               <form action="/unfollow/{{ $profile->id }}" method="POST">
                 @csrf
-                <button type="submit" class="following-btn unf-btn">フォロー解除くん</button>
+                <button type="submit" class="following-btn unf-btn">フォロー解除</button>
               </form>
               @else
               <form action="/follow/{{ $profile->id }}" method="POST">
               @csrf
-              <button type="submit" class="following-btn f-btn">フォローちゃん</button>
+              <button type="submit" class="following-btn f-btn">フォローする</button>
               </form>
             @endif
           </div>

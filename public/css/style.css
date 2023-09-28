@@ -156,7 +156,7 @@ li.menu-home {
 }
 
 #container {
-    flex: 0 0 75%;
+    flex: 0 0 80%;
 }
 
 #side-bar {
@@ -206,69 +206,20 @@ a.follower-list {
     border-radius: 4px;
 }
 
-/* p.search-btn {
+p.search-btn {
     display: flex;
     justify-content: center;
     width: 79%;
     margin-top: 25px;
     font-size: 12px;
-} */
+}
 
 a.search-list {
-    padding: 4px 18px 4px 18px;
+    padding: 7px 18px 7px 18px;
     background: blue;
     color: white;
     border-radius: 4px;
 }
-
-#confirm {
-    border-bottom: 1px solid #727272;
-}
-
-p.side-name {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 15px;
-    font-size: 12px;
-}
-
-.side-list {
-    display: flex;
-    margin-left: 15px;
-    font-size: 12px
-}
-
-p.count {
-    margin-left: 20px;
-}
-
-p.list-btn {
-    margin-top: 15px;
-    margin-bottom: 25px;
-    margin-left: 40%;
-    font-size: 12px;
-}
-
-a.follow-list {
-    padding: 4px 12px 4px 12px;
-    background: blue;
-    color: white;
-    border-radius: 4px;
-}
-
-a.follower-list {
-    padding: 4px 6px 4px 6px;
-    background: blue;
-    color: white;
-    border-radius: 4px;
-}
-
-p.search-btn {
-    text-align: center;
-    margin-top: 25px;
-    font-size: 12px;
-}
-
 
 /* 必要に応じて編集しご自身でSNS課題のレイアウトのようにカスタマイズしてください。 */
 .content {
@@ -571,6 +522,10 @@ button.up-btn {
 
 .another-biop {
     margin-right: 110px;
+}
+
+.pro-span {
+    width: 100%;
 }
 
 .follow-btn {
