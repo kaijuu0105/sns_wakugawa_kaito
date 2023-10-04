@@ -69,8 +69,8 @@ class UsersController extends Controller
         $search = $request->input('searchUsers');
         $username = Auth::user()->username;
 
-        if (!empty($search) && $search != $username){
-            $users=User::where('username', 'LIKE', '%'.$search.'%')->get();
+        if (!empty($search)){
+            $users=User::where('username', '<>', $username)->where('username', 'LIKE', '%'.$search.'%')->get();
             return view('users.search',['users'=>$users, 'search'=>$search]);
             }else{
             return $this->search();

@@ -64,4 +64,4 @@ Route::group(['middleware' => ['auth']], function() {
   Route::get('/another/{id}','FollowsController@another');
 });
 // ログアウト
-Route::post('/login','Auth\LoginController@logout')->name('login');
+Route::post('/logout','Auth\LoginController@logout')->name('logout');

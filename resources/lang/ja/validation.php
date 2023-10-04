@@ -117,12 +117,16 @@ return [
     */
 
     'attributes' => [
-        'username' => 'User Name',
-        'mail' => 'Mail Address',
-        'password' => 'Password',
-        'password_confirmation' => 'Password Confirm',
+        'username' => 'ユーザーネーム',
+        'mail' => 'メールアドレス',
+        'password' => 'パスワード',
+        'password_confirmation' => '確認用パスワード',
         'newPost' => '投稿',
-        'upPost'  => '投稿内容'
+        'upPost'  => '投稿内容',
+        'upUsername' => 'ユーザーネーム',
+        'upMail' => 'メールアドレス',
+        'Password' => 'パスワード',
+        'Password_confirmation' => '確認用パスワード'
     ],
 
 ];

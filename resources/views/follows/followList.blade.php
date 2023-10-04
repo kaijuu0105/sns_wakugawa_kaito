@@ -23,7 +23,7 @@
   @foreach($users as $user)
     <tr class="post-container">
       <td class="follow-img">
-        <a href="/another/{{ $icon->id }}" class="a-follow">
+        <a href="/another/{{ $user->user->id }}" class="a-follow">
           <img src="{{ asset('storage/'.$user->user->images) }}" width="40" height="40" alt="ユーザーアイコン" class="icon follows-icon">
         </a>
       </td>

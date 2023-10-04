@@ -22,15 +22,13 @@
 <table class='follow-table table-hover'>
   @foreach($users as $user)
     <tr class="post-container">
-        <td class="follower-img">
-          <a href="/another/{{ $icon->id }}" >
-            <img src="{{ asset('storage/'.$icon->images) }}" width="40" height="40" class="icon follower-icon">
-          </a>
-        </td>
-        <td class="post-name">{{ $user->user->username }}</td>
+      <td class="follower-img">
+        <a href="/another/{{ $user->user->id }}" >
+        <img src="{{ asset('storage/'.$user->user->images) }}" width="40" height="40" class="icon follower-icon"></a>
+      </td>
+      <td class="post-name">{{ $user->user->username }}</td>
       <td class="post-time">{{ $user->updated_at->format('Y-m-d H:i') }}</td>
-        <td class="follower-post">{{ $user->post}}</td>
-      </div>
+      <td class="follower-post">{{ $user->post}}</td>
     </tr>
   @endforeach
 </table>

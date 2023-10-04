@@ -38,8 +38,8 @@
                         </div>
                         <!-- ログアウト成功 -->
                         <div class="menu-box">
-                            <li class="menu-home"><a href="{{ route('login') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="a-menu">ログアウト</a></li>
-                            <form id="logout-form" action="{{ route('login') }}" method="POST" style="display: none;">
+                            <li class="menu-home"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="a-menu">ログアウト</a></li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
                         </div>
